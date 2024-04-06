@@ -1,0 +1,72 @@
+class FutesHutes implements Muveletek{
+    private be_ki: boolean
+    private fut_hut: string
+
+    constructor() {
+        this.be_ki = false
+        this.fut_hut = ""
+    }
+
+    getBeKi() {
+        return this.be_ki
+    }
+
+    setBeKi(beki: boolean) {
+        this.be_ki = beki
+    }
+
+    getFut_Hut(): string {
+        return this.fut_hut
+    }
+
+    setFut_Hut(ertek: string): void {
+        this.fut_hut = ertek
+    }
+
+    be(): void {
+        if (this.getFut_Hut() == "FUT") {
+            this.setBeKi(true)
+            radio.sendString("FUT")
+            I2C_LCD1602.clear()
+            I2C_LCD1602.ShowString("Futes be", 0, 0)
+        } else if (this.getFut_Hut() == "HUT") {
+            this.setBeKi(true)
+            radio.sendString("HUT")
+            I2C_LCD1602.clear()
+            I2C_LCD1602.ShowString("Hutes be", 0, 0)
+        }
+    }
+
+    ki(): void {
+        this.setBeKi(false)
+        radio.sendString("NEM_FUT_HUT")
+        I2C_LCD1602.clear()
+        I2C_LCD1602.ShowString("Futes/Hutes ki", 0, 0)
+    }
+
+    auto(): void {
+        this.setBeKi(false)
+        radio.sendString("HO_AUTO")
+        I2C_LCD1602.clear()
+        I2C_LCD1602.ShowString("Futes/hutes", 0, 0)
+        I2C_LCD1602.ShowString("auto", 0, 1)
+    }
+
+    buttonA(): void {
+        if (this.getBeKi() == false) {
+            this.setFut_Hut("FUT")
+            this.be()
+        } else if (this.getBeKi() == true) {
+            this.ki()
+        }
+    }
+
+    buttonB(): void {
+        if (this.getBeKi() == false) {
+            this.setFut_Hut("HUT")
+            this.be()
+        } else if (this.getBeKi() == true) {
+            this.ki()
+        }
+    }
+}
