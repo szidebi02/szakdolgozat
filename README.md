@@ -1,2 +1,5 @@
 # Szakdolgozat
-Kis méretű okos otthon kivitelezése micro:bit mikrokontrollerrel
+A Robotika témakör oktatásának új
+lehetőségei, módszerei, eszközei:
+Okosotthon-modell kivitelezése
+micro:bit mikrokontrollerrel
